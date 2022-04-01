@@ -51,6 +51,6 @@ public class Restaruant {
 
     @Override
     public String toString() {
-        return "Id: " + id + "\nName: " + name + "\nCity: " + city + "\nState: " + state;
+        return "\nName: " + name + "\nCity: " + city + "\nState: " + state;
     }
 }

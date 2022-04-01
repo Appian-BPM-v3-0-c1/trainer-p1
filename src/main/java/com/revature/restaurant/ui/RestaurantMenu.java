@@ -91,23 +91,36 @@ public class RestaurantMenu implements IMenu {
     private void viewAllRestaurants() {
         int input = 0;
         Scanner scan = new Scanner(System.in);
-        Review review = new Review();
         List<Restaruant> restList = restaurantDAO.findAll();
 
+        /* loop through restaurant list and print out the restaurants */
+        System.out.println();
         for (int i = 0; i < restList.size(); i++) {
-            System.out.println("[" + i + "] " + restList.get(i).getName());
+            System.out.println("[" + (i + 1) + "] " + restList.get(i).getName());
         }
 
+        /* loop to ask user to enter a restaurant */
         while (true) {
             System.out.print("\nSelect a restaurant to view reviews: ");
-            input = scan.nextInt();
-            if (input >= restList.size()) {
+
+            /* get the user restaurant selection */
+            input = scan.nextInt() - 1;
+
+            /* if the input is not of any restaurant, printout invalid input */
+            if (input > restList.size()) {
                 System.out.println("\nInvalid input");
             } else {
-                review = reviewCrudDAO.findById(restList.get(input).getId());
-                System.out.println(restList.get(input));
-                System.out.println(review);
 
+                /* store the reviews of that restaurant into a review list */
+                List<Review> revList = reviewCrudDAO.findAllById(restList.get(input).getId());
+
+                /* printout the selected restaurant */
+                System.out.println(restList.get(input));
+
+                /* printout all the reviews for that restaurant */
+                for (Review rev : revList) {
+                    System.out.println(rev);
+                }
                 break;
             }
         }

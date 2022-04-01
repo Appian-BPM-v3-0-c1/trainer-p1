@@ -9,6 +9,8 @@ public interface CrudDAO <T> {
 
     T findById(int id);
 
+    List<T> findAllById(int id);
+
     boolean update(T updatedObj);
 
     boolean removeById(String id);

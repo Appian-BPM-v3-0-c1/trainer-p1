@@ -63,6 +63,11 @@ public class RestaurantDAO implements CrudDAO<Restaruant> {
     }
 
     @Override
+    public List<Restaruant> findAllById(int id) {
+        return null;
+    }
+
+    @Override
     public boolean update(Restaruant updatedObj) {
         return false;
     }

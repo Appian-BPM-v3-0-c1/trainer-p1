@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewDAO implements CrudDAO<Review> {
@@ -24,7 +25,12 @@ public class ReviewDAO implements CrudDAO<Review> {
 
     @Override
     public Review findById(int id) {
-        Review review = new Review();
+        return null;
+    }
+
+    @Override
+    public List<Review> findAllById(int id) {
+        List<Review> revList = new ArrayList<>();
 
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM review WHERE restaurant_id = ?");
@@ -33,16 +39,20 @@ public class ReviewDAO implements CrudDAO<Review> {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                Review review = new Review();
+
                 review.setId(rs.getInt("id"));
                 review.setRating(rs.getInt("rating"));
                 review.setMessage(rs.getString("message"));
                 review.setRestaurantId(rs.getInt("restaurant_id"));
+
+                revList.add(review);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return review;
+        return revList;
     }
 
     @Override

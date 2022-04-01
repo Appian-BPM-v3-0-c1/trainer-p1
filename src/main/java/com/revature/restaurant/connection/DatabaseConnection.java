@@ -11,7 +11,7 @@ public class DatabaseConnection {
     /* instantiating Connection object */
     private static Connection con = null;
 
-    /* instantiating Properties object to retrieve properties variables */
+    /* instantiating Properties object to retrieve properties url, username, password */
     private static final Properties prop = new Properties();
 
     static {
