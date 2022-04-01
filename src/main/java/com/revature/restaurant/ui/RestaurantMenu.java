@@ -51,12 +51,13 @@ public class RestaurantMenu implements IMenu {
     private void createRestaurant() {
         char input = ' ';
         boolean exit = false;
-        boolean confirm = false;
+
         Scanner scan = new Scanner(System.in);
         Restaruant restaurant = new Restaruant();
 
         /* loop to ask user to enter in restaurant */
         while (!exit) {
+            boolean confirm = false;
 
             /* get restaurant name */
             System.out.print("\nEnter in restaurant name: ");
@@ -72,10 +73,12 @@ public class RestaurantMenu implements IMenu {
 
             /* loop to confirm */
             while (!confirm) {
-                System.out.println("\nIs this correct? (y/n)\n");
+                System.out.println("\nIs this correct? (y/n)");
                 System.out.println(restaurant);
 
+                System.out.print("\nEnter: ");
                 input = scan.next().charAt(0);
+
                 switch (input) {
                     case 'y':
                         restaurantDAO.save(restaurant);
