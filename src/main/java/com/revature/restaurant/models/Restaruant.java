@@ -1,5 +1,6 @@
 package com.revature.restaurant.models;
 
+/* model to store restaurant data's */
 public class Restaruant {
     private int id;
     private String name;
