@@ -55,16 +55,22 @@ public class RestaurantMenu implements IMenu {
         Scanner scan = new Scanner(System.in);
         Restaruant restaurant = new Restaruant();
 
+        /* loop to ask user to enter in restaurant */
         while (!exit) {
+
+            /* get restaurant name */
             System.out.print("\nEnter in restaurant name: ");
             restaurant.setName(scan.next().toLowerCase());
 
+            /* get restaurant city */
             System.out.print("\nEnter in restaurant city: ");
             restaurant.setCity(scan.next().toLowerCase());
 
+            /* get restaurant state */
             System.out.print("\nEnter in restaurant state: ");
             restaurant.setState(scan.next().toLowerCase());
 
+            /* loop to confirm */
             while (!confirm) {
                 System.out.println("\nIs this correct? (y/n)\n");
                 System.out.println(restaurant);
