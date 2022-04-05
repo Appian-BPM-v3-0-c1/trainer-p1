@@ -18,7 +18,7 @@ public class RestaurantDAO implements CrudDAO<Restaruant> {
         int n = 0;
 
         try {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO restaurant (name, city, state) VALUES (?, ?, ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO restaurants (name, city, state) VALUES (?, ?, ?)");
             ps.setString(1, obj.getName());
             ps.setString(2, obj.getCity());
             ps.setString(3, obj.getState());
@@ -36,7 +36,7 @@ public class RestaurantDAO implements CrudDAO<Restaruant> {
         List<Restaruant> restList = new ArrayList<>();
 
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM restaurant");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM restaurants");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

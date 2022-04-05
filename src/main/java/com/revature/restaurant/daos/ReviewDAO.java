@@ -33,7 +33,7 @@ public class ReviewDAO implements CrudDAO<Review> {
         List<Review> revList = new ArrayList<>();
 
         try {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM review WHERE restaurant_id = ?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM reviews WHERE restaurant_id = ?");
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();

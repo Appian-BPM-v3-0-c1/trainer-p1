@@ -1,9 +1,16 @@
 package com.revature.restaurant.ui;
 
+import com.revature.restaurant.models.User;
+
 import java.util.Scanner;
 
 /* implements IMenu to inherit start() method */
 public class MainMenu implements IMenu {
+    private User user;
+
+    public MainMenu(User user) {
+        this.user = user;
+    }
 
     /* override the start method to add main menu functionality */
     @Override
@@ -19,7 +26,7 @@ public class MainMenu implements IMenu {
 
         /* while exit is not true */
         while (!exit) {
-            System.out.println("\nWelcome to restaurant review!");
+            System.out.println("\nWelcome to restaurant review " + user.getUsername() + "!");
             System.out.println("[1] Go to restaurants menu");
             System.out.println("[2] Go to review menu");
             System.out.println("[x] Exit");
