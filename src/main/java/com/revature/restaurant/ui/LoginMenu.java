@@ -113,6 +113,7 @@ public class LoginMenu implements IMenu {
             user.setPassword((scan.next()));
 
             if (userService.isValidLogin(user)) {
+                user.setId(userService.getUserDAO().getUserId(user.getUsername()));
                 new MainMenu(user).start();
                 break;
             } else {

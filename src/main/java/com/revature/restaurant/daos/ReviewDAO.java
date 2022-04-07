@@ -15,7 +15,23 @@ public class ReviewDAO implements CrudDAO<Review> {
 
     @Override
     public int save(Review obj) {
-        return 0;
+        int n = 0;
+
+        try {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO reviews (rating, message, username, restaurant_id, user_id) VALUES (?, ?, ?, ?, ?)");
+            ps.setString(1, obj.getRating());
+            ps.setString(2, obj.getMessage());
+            ps.setString(3, obj.getUsername());
+            ps.setInt(4, obj.getRestaurantId());
+            ps.setInt(5, obj.getUserId());
+
+            n = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return n;
     }
 
     @Override
@@ -42,9 +58,11 @@ public class ReviewDAO implements CrudDAO<Review> {
                 Review review = new Review();
 
                 review.setId(rs.getInt("id"));
-                review.setRating(rs.getInt("rating"));
+                review.setRating(rs.getString("rating"));
                 review.setMessage(rs.getString("message"));
+                review.setUsername(rs.getString("username"));
                 review.setRestaurantId(rs.getInt("restaurant_id"));
+                review.setUserId(rs.getInt("user_id"));
 
                 revList.add(review);
             }

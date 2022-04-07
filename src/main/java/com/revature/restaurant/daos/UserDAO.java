@@ -89,4 +89,22 @@ public class UserDAO implements CrudDAO<User> {
 
         return username_list;
     }
+
+    public int getUserId(String username) {
+        int id = 0;
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT (id) FROM users where username = ?");
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
+    }
 }
