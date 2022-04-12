@@ -3,6 +3,7 @@ package com.revature.restaurant.daos;
 import com.revature.restaurant.connection.DatabaseConnection;
 import com.revature.restaurant.models.Restaruant;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,5 +76,31 @@ public class RestaurantDAO implements CrudDAO<Restaruant> {
     @Override
     public boolean removeById(String id) {
         return false;
+    }
+
+    public List<Restaruant> findByName(String name) {
+        List<Restaruant> restaruants = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM restaurants WHERE name LIKE ?");
+            ps.setString(1, "%" + name + "%");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Restaruant restaruant = new Restaruant();
+
+                restaruant.setId(rs.getInt("id"));
+                restaruant.setName(rs.getString("name"));
+                restaruant.setCity(rs.getString("city"));
+                restaruant.setState(rs.getString("state"));
+
+                restaruants.add(restaruant);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return restaruants;
     }
 }

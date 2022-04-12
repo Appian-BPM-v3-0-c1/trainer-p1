@@ -3,6 +3,7 @@ package com.revature.restaurant.ui;
 import com.revature.restaurant.daos.RestaurantDAO;
 import com.revature.restaurant.daos.ReviewDAO;
 import com.revature.restaurant.models.User;
+import com.revature.restaurant.services.RestaurantService;
 import com.revature.restaurant.services.ReviewService;
 
 import java.util.Scanner;
@@ -41,7 +42,7 @@ public class MainMenu implements IMenu {
             switch (input) {
                 /* if user enter 1 */
                 case '1':
-                    new RestaurantMenu().start();
+                    new RestaurantMenu(new RestaurantService(new RestaurantDAO(), new ReviewDAO()), user).start();
                     break;
 
                 /* if user enter 2 */
